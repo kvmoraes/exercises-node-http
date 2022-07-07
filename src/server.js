@@ -8,3 +8,30 @@
 
   OBS: Deve ser utilizado apenas os módulos nativos do NODE (http, path, fs, etc), nada de instalar outras libs ( ˘︹˘ )
 */
+const http = require ('http');
+const path = require ('path');
+const fs = require ('fs');
+const url = require ('url');
+
+const port = 8000;
+const host = 'localhost';
+
+const server = http.createServer((req, res) => {
+  res.setHeader('content-type', 'text/html');
+  console.log("rodando...");
+  res.end('over');
+})
+
+server.listen(port, host, () => {
+  console.log('Parar o servidor com: ctrl + c');
+})
+
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.log('Adress in use, retrying...');
+    setTimeout(() => {
+      server.close();
+      server.listen(port, host);
+    }, 1000);
+  }
+})
