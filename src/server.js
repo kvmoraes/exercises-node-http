@@ -8,3 +8,9 @@
 
   OBS: Deve ser utilizado apenas os módulos nativos do NODE (http, path, fs, etc), nada de instalar outras libs ( ˘︹˘ )
 */
+
+const fs = require('fs');
+const path = require('path');
+const http = require('http');
+
+
